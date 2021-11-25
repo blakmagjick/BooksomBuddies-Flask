@@ -12,13 +12,13 @@ def post_index():
 
     post_dicts = [model_to_dict(post) for post in result]
 
-    # current_user_post_dicts = [model_to_dict(post) for post in current_user.posts]
+    current_user_post_dicts = [model_to_dict(post) for post in current_user.posts]
 
-    # for post_dict in current_user_post_dicts:
-    #     post_dict['owner'].pop('password')
+    for post_dict in current_user_post_dicts:
+        post_dict['name'].pop('password')
     
     return jsonify (
-        data=post_dicts,
+        data=current_user_post_dicts,
         message=f"Successfully found {len(post_dicts)} posts",
         status=200
     ), 200
@@ -41,7 +41,26 @@ def create_post():
     ), 201
 
 #SHOW ROUTE
+@posts.route('/<id>', methods=['GET'])
+def show_post(id):
+    post = models.Post.get_by_id(id)
+    return jsonify (
+        data=model_to_dict(post),
+        message='*party emoji*',
+        status=200
+    ), 200
 
-#EDIT ROUTE
+#UPDATE ROUTE
+@posts.route('/<id>', methods=['PUT'])
+def update_post(id):
+    payload = request.get_json()
+
+    models.Post.update(name=current_user.id, **payload).where(models.Post.id == id).execute()
+
+    return jsonify (
+        data=model_to_dict(models.Post.get_by_id(id)),
+        message='Post has been updated',
+        status=200
+    ), 200
 
 #DELETE ROUTE
