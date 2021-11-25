@@ -65,3 +65,12 @@ def update_book(id):
     ), 200
 
 #DELETE ROUTE
+@books.route('/<id>', methods=['DELETE'])
+def delete_book(id):
+    delete_book = models.Book.delete().where(models.Book.id == id).execute()
+
+    return jsonify (
+        data={},
+        message=f"Successfully deleted book",
+        status=200
+    ), 200
