@@ -4,8 +4,8 @@
 
 ## Links
 Deployed Site: \
-Frontend Repo: https://github.com/blakmagjick/booksombuddies-flask \
-Backend Repo: https://github.com/blakmagjick/booksombuddies-react
+Frontend Repo: https://github.com/blakmagjick/booksombuddies-react \
+Backend Repo: https://github.com/blakmagjick/booksombuddies-flask
 
 ## Technologies Used
 Flask, React, SQL
