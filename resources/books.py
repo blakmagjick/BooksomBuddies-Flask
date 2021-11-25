@@ -19,6 +19,22 @@ def books_index():
 
     return jsonify (
         data=current_user_book_dicts,
-        message=f"Successfully found {len(current_user_book_dict)} books",
+        message=f"Successfully found {len(current_user_book_dicts)} books",
         status=200
     ), 200
+
+@books.route('/', methods=['POST'])
+def create_book():
+    payload = request.get_json()
+
+    new_book = models.Book.create(**payload, owner=current_user.id)
+    print(new_book)
+
+    book_dict = model_to_dict(new_book)
+    book_dict['owner'].pop('password')
+
+    return jsonify (
+        data=book_dict,
+        message='Successfully added book',
+        status=201
+    ), 201

@@ -3,38 +3,32 @@ import datetime
 
 from flask_login import UserMixin
 
-DATABASE = SqliteDatabase('booksom.sqlite')
+DB = SqliteDatabase('booksom.sqlite')
 
-class User(UserMixin, Model):
+class BaseModel(Model):
+    class Meta:
+        database = DB
+
+class User(UserMixin, BaseModel):
     username = CharField(unique=True)
     email = CharField(unique=True)
     password = CharField()
 
-    class Meta:
-        database = DATABASE
-
-class Book(Model):
+class Book(BaseModel):
     title = CharField(unique=True)
     author =  CharField()
-    series = CharField()
     cover = CharField()
     genre = CharField()
     notes = CharField()
     owner = ForeignKeyField(User, backref='books')
 
-    class Meta:
-        database = DATABASE
-
-class Post(Model):
+class Post(BaseModel):
     name = ForeignKeyField(User, backref='posts')
     post = CharField()
     comment = CharField()
     date = DateTimeField(default=datetime.datetime.now)
 
-    class Meta:
-        database = DATABASE
-
 def initialize():
-    DATABASE.connect()
-    DATABASE.create_tables([User, Book, Post], safe=True)
-    DATABASE.close()
+    DB.connect()
+    DB.create_tables([User, Book], safe=True)
+    DB.close()
