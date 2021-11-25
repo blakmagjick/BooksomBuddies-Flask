@@ -110,4 +110,3 @@ def who_is_logged_in():
             message=f"Currently logged in as {user_dict['username']}",
             status=200
         ), 200
-
