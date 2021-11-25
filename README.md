@@ -26,16 +26,16 @@ Flask, React, SQL
 ## Entity Relationship Diagrams
 
 ## MVP
-[ ] Login/Logout functionality
-[ ] Add books to user's profile via Open Library API
-[ ] Add books to a Wishlist 
-[ ] Forum to chat with other user's about books
+[ ] Login/Logout functionality \
+[ ] Add books to user's profile via Open Library API \
+[ ] Add books to a Wishlist \
+[ ] Forum to chat with other user's about books \
 [ ] Stylized
 
 ## Stretch Goals
-[ ] Book recommendations by genre
-[ ] What I Want to Read Next section
-[ ] Optimize viewing for mobile
+[ ] Book recommendations by genre \
+[ ] What I Want to Read Next section \
+[ ] Optimize viewing for mobile \
 [ ] Dark mode
 
 ## Unsolved Problems
