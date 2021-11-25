@@ -6,6 +6,7 @@ from flask_login import current_user, login_required
 
 books = Blueprint('books', 'books')
 
+#INDEX ROUTE
 @books.route('/', methods=['GET'])
 def books_index():
     result = models.Book.select()
@@ -23,6 +24,7 @@ def books_index():
         status=200
     ), 200
 
+#CREATE ROUTE
 @books.route('/', methods=['POST'])
 def create_book():
     payload = request.get_json()
@@ -38,3 +40,28 @@ def create_book():
         message='Successfully added book',
         status=201
     ), 201
+
+#SHOW ROUTE
+@books.route('/<id>', methods=['GET'])
+def show_one_book(id):
+    book = models.Book.get_by_id(id)
+    return jsonify (
+        data=model_to_dict(book),
+        message='*party emoji*',
+        status=200
+    ), 200
+
+#UPDATE ROUTE
+@books.route('/<id>', methods=['PUT'])
+def update_book(id):
+    payload = request.get_json()
+
+    models.Book.update(**payload).where(models.Book.id == id).execute()
+
+    return jsonify (
+        data=model_to_dict(models.Book.get_by_id(id)),
+        message='Book has been successfully updated',
+        status= 200
+    ), 200
+
+#DELETE ROUTE
