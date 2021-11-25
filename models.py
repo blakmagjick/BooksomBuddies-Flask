@@ -30,5 +30,5 @@ class Post(BaseModel):
 
 def initialize():
     DB.connect()
-    DB.create_tables([User, Book], safe=True)
+    DB.create_tables([User, Book, Post], safe=True)
     DB.close()
