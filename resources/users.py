@@ -7,6 +7,18 @@ from playhouse.shortcuts import model_to_dict
 
 users = Blueprint('users', 'users')
 
+@users.route('/', methods=['GET'])
+def get_users():
+    result =  models.User.select()
+
+    user_dicts = [model_to_dict(user) for user in result]
+
+    return jsonify (
+        data=user_dicts,
+        message=f"Successfully found {len(user_dicts)} users",
+        status=200
+    ), 200
+
 @users.route('/register', methods=['POST'])
 def register():
     payload = request.get_json()
