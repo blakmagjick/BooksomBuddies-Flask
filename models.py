@@ -23,9 +23,9 @@ class Book(BaseModel):
     owner = ForeignKeyField(User, backref='books')
 
 class Post(BaseModel):
+    title = CharField()
     name = ForeignKeyField(User, backref='posts')
     post = CharField()
-    comment = CharField()
     date = DateTimeField(default=datetime.datetime.now)
 
 def initialize():

@@ -1,6 +1,6 @@
 import models
 
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, session
 from flask_bcrypt import generate_password_hash, check_password_hash
 from flask_login import login_user, current_user, logout_user
 from playhouse.shortcuts import model_to_dict
@@ -42,7 +42,7 @@ def register():
             password=pw_hash
         )
 
-        login_user(created_user)
+        # login_user(created_user)
 
         created_user_dict = model_to_dict(created_user)
 
@@ -67,6 +67,7 @@ def login():
         password_is_good = check_password_hash(user_dict['password'], payload['password'])
 
         if (password_is_good):
+            session.permanent = True
             login_user(user)
 
             user_dict.pop('password')
