@@ -12,13 +12,13 @@ def post_index():
 
     post_dicts = [model_to_dict(post) for post in result]
 
-    current_user_post_dicts = [model_to_dict(post) for post in current_user.posts]
+    # current_user_post_dicts = [model_to_dict(post) for post in current_user.posts]
 
-    for post_dict in current_user_post_dicts:
-        post_dict['name'].pop('password')
+    # for post_dict in current_user_post_dicts:
+    #     post_dict['name'].pop('password')
     
     return jsonify (
-        data=current_user_post_dicts,
+        data=post_dicts,
         message=f"Successfully found {len(post_dicts)} posts",
         status=200
     ), 200
