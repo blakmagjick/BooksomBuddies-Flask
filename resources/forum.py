@@ -64,3 +64,12 @@ def update_post(id):
     ), 200
 
 #DELETE ROUTE
+@posts.route('/<id>', methods=['DELETE'])
+def delete_post(id):
+    delete_post = models.Post.delete().where(models.Post.id == id).execute()
+
+    return jsonify (
+        data={},
+        message=f"Successfully deleted post",
+        status=200
+    ), 200
