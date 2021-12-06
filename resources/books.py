@@ -1,4 +1,5 @@
 import models
+import openlibrary
 from flask import Blueprint, request, jsonify
 from playhouse.shortcuts import model_to_dict
 from flask_login import current_user, login_required
@@ -71,5 +72,38 @@ def delete_book(id):
     return jsonify (
         data={},
         message=f"Successfully deleted book",
+        status=200
+    ), 200
+
+#SEARCH ROUTE
+@books.route('/search', methods=['GET'])
+def search_title():
+    title = request.args.get('title')
+
+    if not title:
+        return jsonify(
+            data={},
+            message=f'Title missing',
+            status=400
+        ), 400
+
+    books, status = openlibrary.search(title)
+
+    if not books:
+        return jsonify(
+            data={},
+            message=f'Openlibrary failed',
+            status=status
+        ), 502
+
+    for book in books:
+        book['cover'] = openlibrary.cover(book)
+        authors = book['author_name'] #Open Library returns a list of authors
+        book['author'] = ", ".join(authors) if authors else "Anonymous"
+        book['isbn'] = book['isbn'][0] #Open Library returns a list of isbns
+
+    return jsonify(
+        data={'books': books},
+        message='Successfully found book',
         status=200
     ), 200

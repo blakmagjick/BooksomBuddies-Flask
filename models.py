@@ -19,6 +19,7 @@ class Book(BaseModel):
     author =  CharField()
     cover = CharField()
     genre = CharField()
+    isbn = CharField()
     notes = CharField()
     owner = ForeignKeyField(User, backref='books')
 
