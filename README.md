@@ -41,3 +41,5 @@ Flask, React, SQL
 ## Unsolved Problems
 
 ## Future Features
+[ ] Add ISBN to Book Model
+[ ] Amazon Affiliate link
