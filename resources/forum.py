@@ -104,3 +104,39 @@ def create_comment(post_id):
     ), 201
 
 #COMMENT SHOW ROUTE
+@posts.route('/comments/<comment_id>', methods=['GET'])
+def show_comment(comment_id):
+    comment = models.Comment.get_by_id(comment_id)
+    return jsonify (
+        data=model_to_dict(comment),
+        message='*party emoji*',
+        status=200
+    ), 200
+
+#COMMENT UPDATE ROUTE
+@posts.route('/comments/<comment_id>', methods=['PUT'])
+def update_comment(comment_id):
+    payload = request.get_json()
+
+    models.Comment.update(**payload).where(models.Comment.id == comment_id).execute()
+
+    updated_comment = model_to_dict(models.Comment.get_by_id(comment_id))
+    updated_comment['postid']['author'].pop('password')
+    updated_comment['author'].pop('password')
+
+    return jsonify (
+        data=updated_comment,
+        message='Comment has been updated',
+        status=200
+    ), 200
+
+#COMMENT DELETE ROUTE
+@posts.route('/comments/<comment_id>', methods=['DELETE'])
+def delete_comment(comment_id):
+    comment_to_delete = models.Comment.delete().where(models.Comment.id == comment_id).execute()
+
+    return jsonify (
+        data={},
+        message=f'Successfully deleted post',
+        status=200
+    ), 200
