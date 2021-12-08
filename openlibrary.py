@@ -6,6 +6,12 @@ def search(title, limit=5):
     if r.status_code != 200:
         return [], r.status_code
     response = r.json()
+    # for book in books:
+    #     book['cover'] = openlibrary.cover(book)
+    #     authors = book['author_name'] #Open Library returns a list of authors
+    #     book['author'] = ", ".join(authors) if authors else "Anonymous"
+    #     book['isbn'] = book['isbn'][0] #Open Library returns a list of isbns
+    #Add Open Library Search  books = response['docs'] ...svbs
     return response['docs'], r.status_code
 
 def cover(book, size="M"):

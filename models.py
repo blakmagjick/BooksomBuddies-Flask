@@ -25,11 +25,17 @@ class Book(BaseModel):
 
 class Post(BaseModel):
     title = CharField()
-    name = ForeignKeyField(User, backref='posts')
+    author = ForeignKeyField(User, backref='posts')
     post = CharField()
+    date = DateTimeField(default=datetime.datetime.now)
+
+class Comment(BaseModel):
+    comment = CharField()
+    author = ForeignKeyField(User, backref='comments')
+    postid = ForeignKeyField(Post, backref='comments')
     date = DateTimeField(default=datetime.datetime.now)
 
 def initialize():
     DB.connect()
-    DB.create_tables([User, Book, Post], safe=True)
+    DB.create_tables([User, Book, Post, Comment], safe=True)
     DB.close()
