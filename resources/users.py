@@ -155,7 +155,6 @@ def new_profile():
         status=201
     ), 201
 
-
 #USER PROFILE SHOW
 @users.route('/profile/<id>', methods=['GET'])
 def get_profile(id):
@@ -180,3 +179,12 @@ def edit_profile(id):
     ), 200
 
 #USER PROFILE DELETE
+@users.route('/profile/<id>', methods=['DELETE'])
+def delete_profile(id):
+    delete_profile = models.UserProfile.delete().where(models.UserProfile.id == id).execute()
+
+    return jsonify (
+        data={},
+        message=f"Successfully deleted user profile",
+        status=200
+    ), 200
