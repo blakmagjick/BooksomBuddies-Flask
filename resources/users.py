@@ -42,10 +42,9 @@ def register():
             password=pw_hash
         )
 
-        # login_user(created_user)
+        login_user(created_user)
 
         created_user_dict = model_to_dict(created_user)
-
         created_user_dict.pop('password')
 
         return jsonify(
@@ -123,3 +122,61 @@ def who_is_logged_in():
             message=f"Currently logged in as user: {user_dict['username']}",
             status=200
         ), 200
+
+#ALL USER PROFILES
+@users.route('/profiles', methods=['GET'])
+def all_profiles():
+    result = models.UserProfile.select()
+    profile_dicts = [model_to_dict(profile) for profile in result]
+
+    for profile_dict in profile_dicts:
+        profile_dict['username'].pop('password')
+    
+
+    return jsonify (
+        data=profile_dicts,
+        message=f"Successfully found {len(profile_dicts)} profiles",
+        status=200
+    ), 200
+
+#USER PROFILE CREATE
+@users.route('/profile/new', methods=['POST'])
+def new_profile():
+    payload = request.get_json()
+
+    new_profile = models.UserProfile.create(**payload, username=current_user.id)
+
+    profile_dict = model_to_dict(new_profile)
+    profile_dict['username'].pop('password')
+
+    return jsonify (
+        data=profile_dict,
+        message='Successfully created new profile!',
+        status=201
+    ), 201
+
+
+#USER PROFILE SHOW
+@users.route('/profile/<id>', methods=['GET'])
+def get_profile(id):
+    profile = models.UserProfile.get_by_id(id)
+    return jsonify (
+        data=model_to_dict(profile),
+        message='*party emoji*',
+        status=200
+    ), 200
+    
+#USER PROFILE EDIT
+@users.route('/profile/<id>', methods=['PUT'])
+def edit_profile(id):
+    payload = request.get_json()
+
+    models.UserProfile.update(username=current_user.id, **payload).where(models.UserProfile.id == id).execute()
+
+    return jsonify (
+        data=model_to_dict(models.UserProfile.get_by_id(id)),
+        message='User profile has been updated',
+        status=200
+    ), 200
+
+#USER PROFILE DELETE

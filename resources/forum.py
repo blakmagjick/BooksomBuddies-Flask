@@ -30,7 +30,7 @@ def create_post():
 
     return jsonify (
         data=post_dict,
-        message="Successfully created new post to book forum",
+        message='Successfully created new post to book forum',
         status=201
     ), 201
 
@@ -65,6 +65,23 @@ def delete_post(id):
     return jsonify (
         data={},
         message=f"Successfully deleted post",
+        status=200
+    ), 200
+
+#ALL COMMENTS
+@posts.route('/comments/', methods=['GET'])
+def all_comments():
+    result = models.Comment.select()
+
+    comment_dicts = [model_to_dict(comment) for comment in result]
+
+    for comment_dict in comment_dicts:
+        comment_dict['postid']['author'].pop('password')
+        comment_dict['author'].pop('password')
+  
+    return jsonify(
+        data=comment_dicts,
+        message=f"Found all comments",
         status=200
     ), 200
 

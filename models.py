@@ -23,6 +23,15 @@ class Book(BaseModel):
     notes = CharField()
     owner = ForeignKeyField(User, backref='books')
 
+class UserProfile(BaseModel):
+    username = ForeignKeyField(User, backref='user')
+    profilepic = CharField()
+    name = CharField()
+    location = CharField()
+    # favebook = ForeignKeyField(Book, backref='user')
+    favebook = CharField()
+    wishlist = CharField()
+
 class Post(BaseModel):
     title = CharField()
     author = ForeignKeyField(User, backref='posts')
@@ -37,5 +46,5 @@ class Comment(BaseModel):
 
 def initialize():
     DB.connect()
-    DB.create_tables([User, Book, Post, Comment], safe=True)
+    DB.create_tables([User, Book, Post, Comment, UserProfile], safe=True)
     DB.close()
