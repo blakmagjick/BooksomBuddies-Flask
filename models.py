@@ -7,11 +7,11 @@ from playhouse.db_url import connect
 from flask_login import UserMixin
 
 # DB = SqliteDatabase('booksom.sqlite')
-DB = connect(os.environ.get('DATABASE_URL') or 'sqlite:///booksom.sqlite')
+DATABASE = connect(os.environ.get('DATABASE_URL') or 'sqlite:///booksom.sqlite')
 
 class BaseModel(Model):
     class Meta:
-        database = DB
+        database = DATABASE
 
 class User(UserMixin, BaseModel):
     username = CharField(unique=True)
@@ -49,6 +49,6 @@ class Comment(BaseModel):
     date = DateTimeField(default=datetime.datetime.now)
 
 def initialize():
-    DB.connect()
-    DB.create_tables([User, Book, Post, Comment, UserProfile], safe=True)
-    DB.close()
+    DATABASE.connect()
+    DATABASE.create_tables([User, Book, Post, Comment, UserProfile], safe=True)
+    DATABASE.close()
