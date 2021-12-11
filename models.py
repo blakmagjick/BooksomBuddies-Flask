@@ -1,9 +1,13 @@
 from peewee import *
+
+import os
 import datetime
 
+from playhouse.db_url import connect
 from flask_login import UserMixin
 
-DB = SqliteDatabase('booksom.sqlite')
+# DB = SqliteDatabase('booksom.sqlite')
+DB = connect(os.environ.get('DATABASE_URL') or 'sqlite:///booksom.sqlite')
 
 class BaseModel(Model):
     class Meta:

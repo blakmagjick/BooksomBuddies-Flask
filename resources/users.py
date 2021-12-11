@@ -132,7 +132,6 @@ def all_profiles():
     for profile_dict in profile_dicts:
         profile_dict['username'].pop('password')
     
-
     return jsonify (
         data=profile_dicts,
         message=f"Successfully found {len(profile_dicts)} profiles",

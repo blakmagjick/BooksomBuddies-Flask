@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, after_this_request
 
 import models
 from resources.users import users
@@ -38,6 +38,19 @@ app.register_blueprint(users, url_prefix='/users')
 app.register_blueprint(books, url_prefix='/books')
 app.register_blueprint(posts, url_prefix='/posts')
 
+@app.before_request 
+def before_request():
+    """Connect to the db before each request"""
+    print("you should see this before each request") 
+    models.DB.connect()
+
+    @after_this_request 
+    def after_request(response):
+        """Close the db connetion after each request"""
+        print("you should see this after each request")
+        models.DB.close()
+        return response 
+
 @app.route('/')
 def test():
     return 'Server connected'
@@ -45,3 +58,7 @@ def test():
 if __name__ == '__main__':
     models.initialize()
     app.run(debug=DEBUG, port=PORT)
+
+if os.environ.get('FLASK_ENV') != 'development':
+  print('\non heroku!')
+  models.initialize()
