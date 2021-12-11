@@ -3,7 +3,7 @@
 ## Project Description
 
 ## Links
-Deployed Site: \
+Deployed Site: https://booksom-buddies.herokuapp.com/ \
 Frontend Repo: https://github.com/blakmagjick/booksombuddies-react \
 Backend Repo: https://github.com/blakmagjick/booksombuddies-flask
 
@@ -38,10 +38,13 @@ Flask, React, SQL
 [ ] Optimize viewing for mobile \
 [ ] Dark mode
 
+## Suggested Functionality From Test Users
+[x] Original Poster can delete any comments on their post. \
+
 ## Unsolved Problems
 
 ## Future Features
 [ ] Add ISBN to Book Model \
 [ ] Amazon Affiliate link \
-[ ] Original Poster can delete any comments on their post. 
+[ ] Forum shows list of posts by title, and all information comes up when clicked
 
