@@ -41,5 +41,7 @@ Flask, React, SQL
 ## Unsolved Problems
 
 ## Future Features
-[ ] Add ISBN to Book Model
-[ ] Amazon Affiliate link
+[ ] Add ISBN to Book Model \
+[ ] Amazon Affiliate link \
+[ ] Original Poster can delete any comments on their post. 
+
