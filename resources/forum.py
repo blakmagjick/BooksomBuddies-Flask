@@ -22,7 +22,7 @@ def post_index():
 @posts.route('/', methods=['POST'])
 def create_post():
     payload = request.get_json()
-
+    print(payload)
     new_post = models.Post.create(**payload, author=current_user.id)
 
     post_dict = model_to_dict(new_post)
