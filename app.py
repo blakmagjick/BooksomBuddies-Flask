@@ -30,9 +30,9 @@ def load_user(user_id):
     except models.DoesNotExist:
         return None
 
-CORS(users, origins=['http://localhost:3000', 'https://booksom-buddies.herokuapp.com'], supports_credentials=True)
-CORS(posts, origins=['http://localhost:3000', 'https://booksom-buddies.herokuapp.com'], supports_credentials=True)
-CORS(books, origins=['http://localhost:3000', 'https://booksom-buddies.herokuapp.com'], supports_credentials=True)
+CORS(users, origins=['http://localhost:3000', 'https://booksom-buddies.herokuapp.com/'], supports_credentials=True)
+CORS(posts, origins=['http://localhost:3000', 'https://booksom-buddies.herokuapp.com/'], supports_credentials=True)
+CORS(books, origins=['http://localhost:3000', 'https://booksom-buddies.herokuapp.com/'], supports_credentials=True)
 
 app.register_blueprint(users, url_prefix='/users')
 app.register_blueprint(books, url_prefix='/books')
