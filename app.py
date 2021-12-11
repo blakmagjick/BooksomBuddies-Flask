@@ -42,13 +42,13 @@ app.register_blueprint(posts, url_prefix='/posts')
 def before_request():
     """Connect to the db before each request"""
     print("you should see this before each request") 
-    models.DB.connect()
+    models.DATABASE.connect()
 
     @after_this_request 
     def after_request(response):
         """Close the db connetion after each request"""
         print("you should see this after each request")
-        models.DB.close()
+        models.DATABASE.close()
         return response 
 
 @app.route('/')
