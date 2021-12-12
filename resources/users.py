@@ -67,6 +67,7 @@ def login():
 
         if (password_is_good):
             session.permanent = True
+            SameSite = None
             login_user(user)
 
             user_dict.pop('password')
