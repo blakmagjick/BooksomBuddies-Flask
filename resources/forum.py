@@ -7,10 +7,14 @@ posts = Blueprint('posts', 'posts')
 
 #POST INDEX ROUTE
 @posts.route('/', methods=['GET'])
+@login_required
 def post_index():
     result = models.Post.select()
 
     post_dicts = [model_to_dict(post) for post in result]
+
+    for post_dict in post_dicts:
+        post_dict['author'].pop('password')
 
     return jsonify (
         data=post_dicts,
@@ -20,6 +24,7 @@ def post_index():
 
 #POST CREATE ROUTE
 @posts.route('/', methods=['POST'])
+@login_required
 def create_post():
     payload = request.get_json()
     print(payload)

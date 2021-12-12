@@ -8,6 +8,7 @@ books = Blueprint('books', 'books')
 
 #INDEX ROUTE
 @books.route('/', methods=['GET'])
+@login_required
 def books_index():
     result = models.Book.select()
 
