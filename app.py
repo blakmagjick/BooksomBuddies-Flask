@@ -18,6 +18,7 @@ PORT=8000
 app = Flask(__name__) 
 
 app.secret_key = os.environ.get('FLASK_APP_SECRET')
+app.config['SESSION_COOKIE_SAMESITE'] = "None"
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -53,7 +54,7 @@ def before_request():
 
 @app.route('/')
 def test():
-    return f"Server connected {app.secret_key}" 
+    return 'Server connected'
 
 if __name__ == '__main__':
     models.initialize()
