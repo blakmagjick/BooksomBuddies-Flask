@@ -53,7 +53,7 @@ def before_request():
 
 @app.route('/')
 def test():
-    return 'Server connected'
+    return f"Server connected {app.secret_key}" 
 
 if __name__ == '__main__':
     models.initialize()
