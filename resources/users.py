@@ -66,7 +66,7 @@ def login():
         password_is_good = check_password_hash(user_dict['password'], payload['password'])
 
         if (password_is_good):
-            # session.permanent = True
+            session.permanent = True
             login_user(user)
 
             user_dict.pop('password')
