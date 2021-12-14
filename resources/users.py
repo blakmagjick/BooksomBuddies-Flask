@@ -39,7 +39,8 @@ def register():
         created_user = models.User.create(
             username=payload['username'],
             email=payload['email'],
-            password=pw_hash
+            password=pw_hash,
+            profilemade=False
         )
 
         login_user(created_user)
@@ -67,7 +68,6 @@ def login():
 
         if (password_is_good):
             session.permanent = True
-            SameSite = None
             login_user(user)
 
             user_dict.pop('password')
@@ -112,8 +112,8 @@ def who_is_logged_in():
         return jsonify (
             data={},
             message='No user is currently logged in',
-            status=204
-        ), 204
+            status=200
+        ), 200
     else: 
         user_dict = model_to_dict(current_user)
         user_dict.pop('password')
@@ -145,6 +145,8 @@ def new_profile():
     payload = request.get_json()
 
     new_profile = models.UserProfile.create(**payload, username=current_user.id)
+    user_to_update = new_profile.username.id
+    models.User.get_by_id(user_to_update).update(profilemade=True).execute()
 
     profile_dict = model_to_dict(new_profile)
     profile_dict['username'].pop('password')
@@ -152,7 +154,7 @@ def new_profile():
     return jsonify (
         data=profile_dict,
         message='Successfully created new profile!',
-        status=201
+        status=201 
     ), 201
 
 #USER PROFILE SHOW

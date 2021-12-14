@@ -17,6 +17,7 @@ class User(UserMixin, BaseModel):
     username = CharField(unique=True)
     email = CharField(unique=True)
     password = CharField()
+    profilemade = BooleanField(default=False)
 
 class Book(BaseModel):
     title = CharField(unique=True)
