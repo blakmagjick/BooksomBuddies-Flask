@@ -16,8 +16,8 @@ def books_index():
 
     current_user_book_dicts = [model_to_dict(book) for book in current_user.books]
 
-    for book_dict in current_user_book_dicts:
-        book_dict['owner'].pop('password')
+    # for book_dict in current_user_book_dicts:
+    #     book_dict['owner'].pop('password')
 
     return jsonify (
         data=current_user_book_dicts,
@@ -30,11 +30,11 @@ def books_index():
 def create_book():
     payload = request.get_json()
 
-    new_book = models.Book.create(**payload, owner=current_user.id)
+    new_book = models.Book.create(**payload)
     print(new_book)
 
     book_dict = model_to_dict(new_book)
-    book_dict['owner'].pop('password')
+    # book_dict['owner'].pop('password')
 
     return jsonify (
         data=book_dict,

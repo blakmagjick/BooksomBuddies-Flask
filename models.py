@@ -23,14 +23,16 @@ class Book(BaseModel):
     title = CharField()
     author =  CharField()
     cover = CharField()
-    isbn = CharField(unique=True)
+    # isbn = CharField(unique=True)
+    isbn = CharField()
 
 class UserProfile(BaseModel):
     username = ForeignKeyField(User, backref='user')
     profilepic = CharField()
     name = CharField()
     location = CharField()
-    favebook = ForeignKeyField(Book)
+    # favebook = ForeignKeyField(Book)
+    favebook = CharField()
 
 class Post(BaseModel):
     title = CharField()

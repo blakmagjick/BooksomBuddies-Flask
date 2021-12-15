@@ -184,6 +184,7 @@ def edit_profile(id):
 @users.route('/profile/<id>', methods=['DELETE'])
 def delete_profile(id):
     delete_profile = models.UserProfile.delete().where(models.UserProfile.id == id).execute()
+    update_user = models.User.update(profilemade=False).where(models.User.id == id).execute()
 
     return jsonify (
         data={},
