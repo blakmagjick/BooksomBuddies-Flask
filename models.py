@@ -20,22 +20,17 @@ class User(UserMixin, BaseModel):
     profilemade = BooleanField(default=False)
 
 class Book(BaseModel):
-    title = CharField(unique=True)
+    title = CharField()
     author =  CharField()
     cover = CharField()
-    genre = CharField()
-    isbn = CharField()
-    notes = CharField()
-    owner = ForeignKeyField(User, backref='books')
+    isbn = CharField(unique=True)
 
 class UserProfile(BaseModel):
     username = ForeignKeyField(User, backref='user')
     profilepic = CharField()
     name = CharField()
     location = CharField()
-    # favebook = ForeignKeyField(Book, backref='user')
-    favebook = CharField()
-    wishlist = CharField()
+    favebook = ForeignKeyField(Book)
 
 class Post(BaseModel):
     title = CharField()
