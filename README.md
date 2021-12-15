@@ -27,21 +27,22 @@ Flask, React, SQL
 
 ## MVP
 [ ] Login/Logout functionality \
-[ ] Add books to user's profile via Open Library API \
-[ ] Add books to a Wishlist \
 [ ] Forum to chat with other user's about books \
+[ ] Add books to user's profile via Open Library API \
 [ ] Stylized
 
 ## Stretch Goals
 [ ] Book recommendations by genre \
 [ ] What I Want to Read Next section \
+[ ] Add books to a Wishlist \
 [ ] Optimize viewing for mobile \
 [ ] Dark mode
 
 ## Suggested Functionality From Test Users
 [x] Original Poster can delete any comments on their post. \
 
-## Unsolved Problems
+## Bugs/Unsolved Problems
+[ ] When someone who doesn’t have a profile logs in, the Create New Profile component doesn’t show up until the page is refreshed. 
 
 ## Future Features
 [ ] Add ISBN to Book Model \
