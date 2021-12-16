@@ -112,8 +112,8 @@ def who_is_logged_in():
         return jsonify (
             data={},
             message='No user is currently logged in',
-            status=200
-        ), 200
+            status=401
+        ), 401
     else: 
         user_dict = model_to_dict(current_user)
         user_dict.pop('password')
