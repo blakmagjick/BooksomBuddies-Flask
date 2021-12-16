@@ -40,6 +40,7 @@ Flask, React, SQL
 
 ## Suggested Functionality From Test Users
 [x] Original Poster can delete any comments on their post. \
+[ ] Send out an email after registration to confirm it went through
 
 ## Bugs/Unsolved Problems
 [ ] When someone who doesn’t have a profile logs in, the Create New Profile component doesn’t show up until the page is refreshed. 
