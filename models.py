@@ -16,11 +16,11 @@ class User(UserMixin, BaseModel):
     password = CharField()
     profilemade = BooleanField(default=False)
 
-class Book(BaseModel):
-    title = CharField()
-    author =  CharField()
-    cover = CharField()
-    isbn = CharField()
+# class Book(BaseModel):
+#     title = CharField()
+#     author =  CharField()
+#     cover = CharField()
+#     isbn = CharField()
 
 class UserProfile(BaseModel):
     username = ForeignKeyField(User, backref='user')
@@ -43,5 +43,5 @@ class Comment(BaseModel):
 
 def initialize():
     DATABASE.connect()
-    DATABASE.create_tables([User, Book, Post, Comment, UserProfile], safe=True)
+    DATABASE.create_tables([User, Post, Comment, UserProfile], safe=True)
     DATABASE.close()
