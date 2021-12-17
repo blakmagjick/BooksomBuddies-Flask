@@ -100,6 +100,7 @@ def login():
         ), 401
 
 @users.route('/logout', methods=['GET'])
+@login_required
 def logout():
     logout_user()
 
@@ -131,6 +132,7 @@ def who_is_logged_in():
 
 #ALL USER PROFILES
 @users.route('/profiles', methods=['GET'])
+@login_required
 def all_profiles():
     result = models.UserProfile.select()
     profile_dicts = [model_to_dict(profile) for profile in result]
@@ -146,6 +148,7 @@ def all_profiles():
 
 #USER PROFILE CREATE
 @users.route('/profile/new', methods=['POST'])
+@login_required
 def new_profile():
     payload = request.get_json()
 
@@ -164,6 +167,7 @@ def new_profile():
 
 #USER PROFILE SHOW
 @users.route('/profile/<id>', methods=['GET'])
+@login_required
 def get_profile(id):
     profile = models.UserProfile.get_by_id(id)
     return jsonify (
@@ -191,7 +195,12 @@ def edit_profile(id):
 
 #USER PROFILE DELETE
 @users.route('/profile/<id>', methods=['DELETE'])
+@login_required
 def delete_profile(id):
+
+    if not can_update(id):
+        return unauthorized()
+        
     delete_profile = models.UserProfile.delete().where(models.UserProfile.id == id).execute()
     update_user = models.User.update(profilemade=False).where(models.User.id == id).execute()
 

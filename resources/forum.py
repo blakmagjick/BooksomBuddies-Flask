@@ -3,6 +3,8 @@ from flask import Blueprint, request, jsonify
 from playhouse.shortcuts import model_to_dict
 from flask_login import current_user, login_required
 
+from auth import can_update, unauthorized
+
 posts = Blueprint('posts', 'posts')
 
 #POST INDEX ROUTE
@@ -41,6 +43,7 @@ def create_post():
 
 #POST SHOW ROUTE
 @posts.route('/<id>', methods=['GET'])
+@login_required
 def show_post(id):
     post = models.Post.get_by_id(id)
     return jsonify (
@@ -51,10 +54,16 @@ def show_post(id):
 
 #POST UPDATE ROUTE
 @posts.route('/<id>', methods=['PUT'])
+@login_required
 def update_post(id):
     payload = request.get_json()
 
-    models.Post.update(author=current_user.id, **payload).where(models.Post.id == id).execute()
+    post = models.Post.get_by_id(id)
+
+    if not can_update(post.author.id):
+        return unauthorized()
+
+    models.Post.update(**payload).where(models.Post.id == id).execute()
 
     return jsonify (
         data=model_to_dict(models.Post.get_by_id(id)),
@@ -64,7 +73,14 @@ def update_post(id):
 
 #POST DELETE ROUTE
 @posts.route('/<id>', methods=['DELETE'])
+@login_required
 def delete_post(id):
+   
+    post = models.Post.get_by_id(id)
+
+    if not can_update(post.author.id):
+        return unauthorized()
+
     delete_post = models.Post.delete().where(models.Post.id == id).execute()
 
     return jsonify (
@@ -75,6 +91,7 @@ def delete_post(id):
 
 #ALL COMMENTS
 @posts.route('/comments/', methods=['GET'])
+@login_required
 def all_comments():
     result = models.Comment.select()
 
@@ -92,6 +109,7 @@ def all_comments():
 
 #COMMENT INDEX ROUTE
 @posts.route('/comments/<post_id>', methods=['GET'])
+@login_required
 def get_comments(post_id):
     result = models.Comment.select()
 
@@ -110,6 +128,7 @@ def get_comments(post_id):
 
 #COMMENT CREATE ROUTE
 @posts.route('/comments/<post_id>', methods=['POST'])
+@login_required
 def create_comment(post_id):
     payload = request.get_json()
 
@@ -127,6 +146,7 @@ def create_comment(post_id):
 
 #COMMENT SHOW ROUTE
 @posts.route('/comments/<comment_id>', methods=['GET'])
+@login_required
 def show_comment(comment_id):
     comment = models.Comment.get_by_id(comment_id)
     return jsonify (
@@ -137,6 +157,7 @@ def show_comment(comment_id):
 
 #COMMENT UPDATE ROUTE
 @posts.route('/comments/<comment_id>', methods=['PUT'])
+@login_required
 def update_comment(comment_id):
     payload = request.get_json()
 
@@ -154,7 +175,9 @@ def update_comment(comment_id):
 
 #COMMENT DELETE ROUTE
 @posts.route('/comments/<comment_id>', methods=['DELETE'])
+@login_required
 def delete_comment(comment_id):
+
     comment_to_delete = models.Comment.delete().where(models.Comment.id == comment_id).execute()
 
     return jsonify (
