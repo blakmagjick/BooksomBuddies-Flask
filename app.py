@@ -18,8 +18,6 @@ PORT=8000
 app = Flask(__name__) 
 
 app.secret_key = os.environ.get('FLASK_APP_SECRET')
-app.config['SESSION_COOKIE_SAMESITE'] = "None"
-app.config['SESSION_COOKIE_SECURE'] = True
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -62,5 +60,7 @@ if __name__ == '__main__':
     app.run(debug=DEBUG, port=PORT)
 
 if os.environ.get('FLASK_ENV') != 'development':
-  print('\non heroku!')
-  models.initialize()
+    print('\non heroku!')
+    app.config['SESSION_COOKIE_SAMESITE'] = "None"
+    app.config['SESSION_COOKIE_SECURE'] = True
+    models.initialize()

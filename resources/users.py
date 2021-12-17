@@ -2,12 +2,15 @@ import models
 
 from flask import Blueprint, request, jsonify, session
 from flask_bcrypt import generate_password_hash, check_password_hash
-from flask_login import login_user, current_user, logout_user
+from flask_login import login_user, current_user, logout_user, login_required
 from playhouse.shortcuts import model_to_dict
+
+from auth import can_update, unauthorized
 
 users = Blueprint('users', 'users')
 
 @users.route('/', methods=['GET'])
+@login_required
 def get_users():
     result =  models.User.select()
 
@@ -57,6 +60,7 @@ def register():
 @users.route('/login', methods=['POST'])
 def login():
     payload = request.get_json()
+    print(payload)
     payload['username'] = payload['username'].lower()
 
     try:
@@ -108,6 +112,7 @@ def logout():
 #FOR TESTING
 @users.route('/who_is_logged_in', methods=['GET'])
 def who_is_logged_in():
+    print(current_user)
     if not current_user.is_authenticated:
         return jsonify (
             data={},
@@ -166,13 +171,17 @@ def get_profile(id):
         message='*party emoji*',
         status=200
     ), 200
-    
+        
 #USER PROFILE EDIT
 @users.route('/profile/<id>', methods=['PUT'])
+@login_required
 def edit_profile(id):
     payload = request.get_json()
 
-    models.UserProfile.update(username=current_user.id, **payload).where(models.UserProfile.id == id).execute()
+    if not can_update(id):
+        return unauthorized()
+
+    models.UserProfile.update(**payload).where(models.UserProfile.id == id).execute()
 
     return jsonify (
         data=model_to_dict(models.UserProfile.get_by_id(id)),
