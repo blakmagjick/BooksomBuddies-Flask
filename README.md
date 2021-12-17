@@ -26,10 +26,10 @@ Flask, React, SQL
 ## Entity Relationship Diagrams
 
 ## MVP
-[ ] Login/Logout functionality \
-[ ] Forum to chat with other user's about books \
-[ ] Add books to user's profile via Open Library API \
-[ ] Stylized
+[x] Login/Logout functionality \
+[x] Forum to chat with other user's about books \
+[x] Add books to user's profile via Open Library API \
+[x] Stylized
 
 ## Stretch Goals
 [ ] Book recommendations by genre \
@@ -39,15 +39,20 @@ Flask, React, SQL
 [ ] Dark mode
 
 ## Suggested Functionality From Test Users
-[x] Original Poster can delete any comments on their post. \
-[ ] Send out an email after registration to confirm it went through
-[ ] Have user messaging if someone tries to login and they haven't registered before
+[x] Original Poster can delete any comments on their post \
+[ ] Send out an email after registration to confirm it went through \
+[ ] Have user messaging - if someone tries to login and they haven't registered before
+
 
 ## Bugs/Unsolved Problems
-[ ] When someone who doesn’t have a profile logs in, the Create New Profile component doesn’t show up until the page is refreshed. 
+[x] When someone who doesn’t have a profile logs in, the Create New Profile component doesn’t show up until the page is refreshed \
+[ ] Each child in a list should have a unique "key" prop warning \
+[ ] Move the Create New Profile to top of the page
+
 
 ## Future Features
 [ ] Add ISBN to Book Model \
 [ ] Amazon Affiliate link \
-[ ] Forum shows list of posts by title, and all information comes up when clicked
+[ ] Forum shows list of posts by title, and all information comes up when clicked \
+[ ] Have single profile pages with more information than just the all profiles page
 
