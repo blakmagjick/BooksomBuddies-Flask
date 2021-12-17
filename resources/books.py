@@ -99,9 +99,15 @@ def search_title():
 
     for book in books:
         book['cover'] = openlibrary.cover(book)
-        authors = book['author_name'] #Open Library returns a list of authors
+        authors = book.get('author_name') #Open Library returns a list of authors
         book['author'] = ", ".join(authors) if authors else "Anonymous"
-        book['isbn'] = book['isbn'][0] #Open Library returns a list of isbns
+        book['isbn'] = book['isbn'][0] if book.get('isbn') else '' #Open Library returns a list of isbns
+
+    # make sure all the books have covers
+    books = [book for book in books if book['cover']]
+
+    # return only the first 5 items
+    books = books[:5]
 
     return jsonify(
         data={'books': books},

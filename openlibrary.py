@@ -1,6 +1,6 @@
 import requests
 
-def search(title, limit=5):
+def search(title, limit=10):
     payload = {'title': title, 'limit': limit}
     r = requests.get('http://openlibrary.org/search.json', params=payload)
     if r.status_code != 200:
