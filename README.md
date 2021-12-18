@@ -22,8 +22,11 @@ Flask, React, SQL
 - As a user, I want the app to look pretty and professional.
 
 ## Wireframes
+![Screen Shot 2021-11-22 at 12 47 30 PM](https://user-images.githubusercontent.com/6404196/146621061-57698632-7b7d-446f-8ba6-24a3204a9754.png)
+![Screen Shot 2021-11-22 at 12 47 25 PM](https://user-images.githubusercontent.com/6404196/146621084-8e7ee3e4-83b2-4c36-a4e4-d29916b43294.png)
 
 ## Entity Relationship Diagrams
+<img width="659" alt="Screen Shot 2021-12-17 at 4 34 49 PM" src="https://user-images.githubusercontent.com/6404196/146622621-bd78018f-284b-4b35-a3d4-73a1b60d6f78.png">
 
 ## MVP
 [x] Login/Logout functionality \
@@ -57,5 +60,6 @@ Flask, React, SQL
 [ ] Amazon Affiliate link \
 [ ] Forum shows list of posts by title, and all information comes up when clicked \
 [ ] Have single profile pages with more information than just the All Profiles page \
-[ ] Add other users to a friend's list
+[ ] Add other users to a friend's list \
+[ ] When clicking on abook for more info, you can see what other users have that book
 
