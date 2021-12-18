@@ -8,9 +8,12 @@ Frontend Repo: https://github.com/blakmagjick/booksombuddies-react \
 Backend Repo: https://github.com/blakmagjick/booksombuddies-flask
 
 ## Technologies Used
-Flask, React, SQL
+Flask, Python, React, Javascript, SQL
 
 ## Installation Steps
+- Fork and clone the frontend and backend repos. 
+- In the terminal, in the directory for the frontend: ```npm install``` in order to install dependencies, then ```npm run start``` to run server.
+- In the terminal, in the directory for the backend: ```pip3 install``` to install dependencies, then ```python3 app.py``` to run server.
 
 ## User Stories
 - As a user, I want to be able to create a profile, so that I can see what books I own.
