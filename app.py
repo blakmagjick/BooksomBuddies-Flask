@@ -18,8 +18,9 @@ PORT=8000
 app = Flask(__name__) 
 
 app.secret_key = os.environ.get('FLASK_APP_SECRET')
-# app.config['SESSION_COOKIE_SAMESITE'] = "None"
-# app.config['SESSION_COOKIE_SECURE'] = True
+app.config['SESSION_COOKIE_SAMESITE'] = "None"
+app.config['SESSION_COOKIE_SECURE'] = True
+app.config['COOKIE_SECURE'] = True
 
 login_manager = LoginManager()
 login_manager.init_app(app)
