@@ -55,7 +55,8 @@ Flask, Python, React, Javascript, SQL
 [x] When someone who doesn’t have a profile logs in, the Create New Profile component doesn’t show up until the page is refreshed \
 [ ] Each child in a list should have a unique "key" prop warning \
 [ ] Move the Create New Profile to top of the page \
-[ ] Mixed Content: The page at [...] was loaded over HTTPS, but requested an insecure element 'http://[...]. This request was automatically upgraded to HTTPS, For more information see https://blog.chromium.org/2019/10/no-more-mixed-messages-about-https.html
+[ ] Mixed Content: The page at [...] was loaded over HTTPS, but requested an insecure element 'http://[...]. This request was automatically upgraded to HTTPS, For more information see https://blog.chromium.org/2019/10/no-more-mixed-messages-about-https.html \
+[ ] Cookies issue with Safari browser
 
 
 ## Future Features
