@@ -36,12 +36,13 @@ Flask, React, SQL
 [ ] What I Want to Read Next section \
 [ ] Add books to a Wishlist \
 [ ] Optimize viewing for mobile \
-[ ] Dark mode
+[ ] Dark/Light mode
 
 ## Suggested Functionality From Test Users
 [x] Original Poster can delete any comments on their post \
 [ ] Send out an email after registration to confirm it went through \
-[ ] Have user messaging - if someone tries to login and they haven't registered before
+[ ] Have user messaging - if someone tries to login and they haven't registered before \
+[ ] User messaging on the frontend if username or pw is wrong 
 
 
 ## Bugs/Unsolved Problems
