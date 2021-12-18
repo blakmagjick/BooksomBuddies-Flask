@@ -8,7 +8,7 @@ Frontend Repo: https://github.com/blakmagjick/booksombuddies-react \
 Backend Repo: https://github.com/blakmagjick/booksombuddies-flask
 
 ## Technologies Used
-Flask, Python, React, Javascript, SQL
+Flask/Python, React/Javascript, SQL, Postgres/pgAdmin
 
 ## Installation Steps
 - Fork and clone the frontend and backend repos. 
@@ -46,6 +46,7 @@ Flask, Python, React, Javascript, SQL
 
 ## Suggested Functionality From Test Users
 [x] Original Poster can delete any comments on their post \
+[ ] Default user pic used when someone doesn't add one \
 [ ] Send out an email after registration to confirm it went through \
 [ ] Have user messaging - if someone tries to login and they haven't registered before \
 [ ] User messaging on the frontend if username or pw is wrong \
