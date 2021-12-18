@@ -8,7 +8,7 @@ Frontend Repo: https://github.com/blakmagjick/booksombuddies-react \
 Backend Repo: https://github.com/blakmagjick/booksombuddies-flask
 
 ## Technologies Used
-Flask/Python, React/Javascript, SQL, Postgres/pgAdmin
+Flask/Python, React/Javascript, SQL, Postgres/pgAdmin, HTML, CSS
 
 ## Installation Steps
 - Fork and clone the frontend and backend repos. 
