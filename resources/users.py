@@ -76,12 +76,11 @@ def login():
 
             user_dict.pop('password')
 
-            return redirect('https://booksom-buddies.herokuapp.com')
-            # return jsonify (
-            #     data=user_dict,
-            #     message=f"Successfully logged in as {user_dict['username']}",
-            #     status=200
-            # ), 200
+            return jsonify (
+                data=user_dict,
+                message=f"Successfully logged in as {user_dict['username']}",
+                status=200
+            ), 200
         else:
             print('Email is no good')
 
