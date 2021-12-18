@@ -16,8 +16,7 @@ Flask/Python, React/Javascript, SQL, Postgres/pgAdmin
 - In the terminal, in the directory for the backend: ```pip3 install``` to install dependencies, then ```python3 app.py``` to run server.
 
 ## User Stories
-- As a user, I want to be able to create a profile, so that I can see what books I own.
-- As a user, I want to be able to leave notes on my books, that only I can see, that I can see things like who recommended this book to me, or something a friend told me about the book.
+- As a user, I want to be able to create a profile.
 - As a user, I want to be able to add books to a wish list, so that I can easily look at the list while I'm out book shopping.
 - As a user, I want to be able to edit my profile, but no one else's.
 - As a user, I want to be able to go to the forum and talk to other users about books, so that I can get some ideas of what to read next, and/or talk about what I love/hate about books I've read.
@@ -40,6 +39,7 @@ Flask/Python, React/Javascript, SQL, Postgres/pgAdmin
 ## Stretch Goals
 [ ] Book recommendations by genre \
 [ ] What I Want to Read Next section \
+[ ] Leave notes on books, that only user can see \
 [ ] Add books to a Wishlist \
 [ ] Optimize viewing for mobile \
 [ ] Dark/Light mode
