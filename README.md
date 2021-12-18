@@ -48,7 +48,8 @@ Flask, Python, React, Javascript, SQL
 [x] Original Poster can delete any comments on their post \
 [ ] Send out an email after registration to confirm it went through \
 [ ] Have user messaging - if someone tries to login and they haven't registered before \
-[ ] User messaging on the frontend if username or pw is wrong 
+[ ] User messaging on the frontend if username or pw is wrong \
+[ ] Ability to upload photo from computer
 
 
 ## Bugs/Unsolved Problems
