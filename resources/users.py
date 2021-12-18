@@ -110,6 +110,17 @@ def logout():
         status=200
     ), 200
 
+#DELETE ROUTE
+@users.route('/<id>', methods=['DELETE'])
+def delete_user(id):
+    delete_user = models.User.delete().where(models.User.id == id).execute()
+
+    return jsonify (
+        data={},
+        message=f"Successfully deleted user",
+        status=200
+    ), 200
+
 #FOR TESTING
 @users.route('/who_is_logged_in', methods=['GET'])
 def who_is_logged_in():
